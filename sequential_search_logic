@@ -1,0 +1,57 @@
+#include <stdio.h>
+#include <malloc.h>
+
+struct node{
+    char * data;
+    struct node * next;
+}typedef Node;
+
+Node* L = NULL;
+
+Node * InsertNode(char* data, Node* prev){
+    //노드생성
+    Node * newNode = (Node *)malloc(sizeof(Node));
+    if(newNode==NULL)
+        return NULL;
+    
+    newNode->data=data; //데이터 값 넣기
+    newNode->next=NULL; //포인터 NULL초기화
+    //첫노드 입서트인지 기존노드 인서트인지 구분하기
+    if(prev==NULL)
+    {
+        //첫노드
+        L = newNode;
+    }else{
+        //기존노드 존재
+        prev->next=newNode;
+    }
+    return newNode;
+}
+
+
+void SelectAll(){
+    Node* cur = L;
+    if(cur != NULL)
+        {
+            while(cur!=NULL){
+                printf("\n%p ", cur);
+                printf("%s ", cur->data);
+                cur=cur->next; //순차탐색의 기본적인 구조
+            }
+        }
+}
+
+int main() {
+    
+    Node* n1 =  InsertNode("홍길동", NULL);
+    Node* n2 =  InsertNode("서길동", n1);
+    Node* n3 =  InsertNode("저길동", n2);
+
+    printf("%p %p %p \n",n1,n2,n3);
+    printf("%s %s %s \n",n1->data,n2->data,n3->data);
+    printf("%s %s %s \n",L->data, L->next->data, L->next->next->data);
+    SelectAll();
+    
+    return 0;
+
+}
