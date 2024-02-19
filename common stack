@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define TRUE	1
+#define FALSE	0
+
+//구조체 정의
+typedef struct _arrayStack
+{
+	int stackArr[100];
+	int topIndex;
+} ArrayStack;
+typedef ArrayStack Stack;
+
+//초기화 함수 
+void StackInit(Stack* pstack)
+{
+	pstack->topIndex = -1;
+}
+
+//스택 공백 여부 확인 함수 
+int SIsEmpty(Stack* pstack)
+{
+	if (pstack->topIndex == -1)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+//스택에 값저장 PUSH 함수
+void SPush(Stack* pstack, int data)
+{	
+	if(pstack->topIndex>= (sizeof(pstack->stackArr)/sizeof(int)))									// topIndex 카운트 
+	printf("길이 : %d", pstack->stackArr[pstack->topIndex] = data);				// stackArr 에 데이터 추가
+
+}
+
+//스택에 마지막 Data제거 POP 함수 
+int SPop(Stack* pstack)
+{
+			//topIndex Null확인
+    if(pstack->topIndex>0){
+    int del = pstack->stackArr[(pstack->topIndex)--];
+    return del;
+    }
+			//topIndex -1 
+}
+//스택의 마지막 Data조회 PEEK 함수 
+int SPeek(Stack* pstack)
+{
+	if (pstack->topIndex == 0)			
+	{
+		printf("stack Memory Error!");
+		exit(-1);
+	}
+
+	return pstack->stackArr[pstack->topIndex];	// topIndex 배열요소 반환
+}
+
+int main(void)
+{
+	// Stack의 생성 및 초기화 ///////
+	Stack stack;
+	StackInit(&stack);
+
+	// 데이터 넣기 ///////
+	int n1 = 0;
+    
+    SPush(&stack, 100); SPush(&stack, 200);
+    SPush(&stack, 300); SPush(&stack, 400);
+	printf("\n");
+	
+	//마지막 데이터 확인//////
+	printf("TOP Data : %d\n", SPeek(&stack));
+	
+	//데이터 POP 확인//////
+	SPop(&stack);
+
+	printf("\n");
+	
+	//마지막 데이터 확인//////
+	printf("TOP Data : %d\n", SPeek(&stack));
+
+	return 0;
+}
