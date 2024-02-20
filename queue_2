@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define MAXIDX 99
+// Queue 구조체 정의
+struct Queue{
+int front;
+int rear;
+int Arr[100];
+};
+typedef struct Queue Que;
+
+// 초기화 함수 
+void Init(Que* pq)
+{
+	pq->front = 0;
+	pq->rear = 0;
+}
+
+//Empty 확인 함수
+int Empty(Que* pq)
+{
+	if (pq->front == pq->rear)
+		return 1;
+	else
+		return 0;
+}
+
+
+// NextIndex 함수
+int NextIdx(int idx)
+{
+	if (idx == 100)
+		return 0;
+	else
+		return idx + 1;
+}
+
+// Queue Peek 함수 
+int QPeek(Que* pq)
+{
+	if (pq->rear == pq->front)
+	{
+		printf("Queue Empty");
+		return ;
+	}
+	printf("First Data : %d\n", pq->Arr[NextIdx(pq->front)] );
+}
+
+void Enq(Que * pq, int data)
+{   
+    if(pq->rear==MAXIDX+1){
+        printf("OVERFLOW..");
+        return ;
+    pq->Arr[pq->rear]=data;
+    pq->rear=NextIndex(pq->rear);
+    }
+
+
+}
+
+int Deq(Que * pq)
+{
+    if(pq->front!=pq->rear){
+        pq->front=NextIdx(pq->front);}
+    else{ 
+        pq->front= NextIdx(pq->front);
+        pq->rear= NextIdx(pq->rear);
+    }   
+    return del;
+}
+
+
+void main()
+{
+	// Queue의 생성 및 초기화 ///////
+	Que q;
+	Init(&q);
+
+	// 데이터 넣기 ///////
+	Enq(&q, 1);
+	Enq(&q, 2);
+	Enq(&q, 3);
+	Enq(&q, 4);
+	Enq(&q, 5);
+
+	// 데이터 꺼내기 ///////
+	while(!Empty(&q))
+		printf("%d ", Deq(&q));
+
+
+}
